@@ -42,11 +42,7 @@ int countIslands(int M[][COL])
   
 int main() 
 { 
-    int M[][COL] = { { 1, 0, 1, 0, 0 }, 
-                     { 0, 1, 0, 0, 1 }, 
-                     { 1, 0, 0, 1, 0 }, 
-                     { 0, 0, 1, 0, 0 }, 
-                     { 1, 0, 1, 0, 0 } }; 
+    int M[][COL] = { {1, 1, 0, 0, 0}, {0, 1, 0, 0, 1}, {1, 0, 0, 1, 1}, {0, 0, 0, 0, 0}, {1, 0, 1, 0, 1} }; 
   
     cout << "Number of islands is: " << countIslands(M); 
   
