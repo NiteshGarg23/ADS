@@ -30,30 +30,30 @@ Node* newNode(int key) {
     return(node);  
 }  
   
-Node *rightRotate(Node *y) {  
-    Node *x = y->left;  
-    Node *T2 = x->right;  
+Node *rightRotate(Node *node) {  
+    Node *l = node->left;  
+    Node *r = x->right;  
   
-    x->right = y;  
-    y->left = T2;  
+    l->right = node;  
+    node->left = r;  
   
-    y->height = max(height(y->left), height(y->right)) + 1;  
-    x->height = max(height(x->left), height(x->right)) + 1;  
+    node->height = max(height(node->left), height(node->right)) + 1;  
+    l->height = max(height(l->left), height(l->right)) + 1;  
   
-    return x;  
+    return node;  
 }  
   
-Node *leftRotate(Node *x) {  
-    Node *y = x->right;  
-    Node *T2 = y->left;  
+Node *leftRotate(Node *node) {  
+    Node *r = node->right;  
+    Node *l = y->left;  
   
-    y->left = x;  
-    x->right = T2;  
+    r->left = node;  
+    node->right = l;  
   
-    x->height = max(height(x->left), height(x->right)) + 1;  
-    y->height = max(height(y->left), height(y->right)) + 1;  
+    node->height = max(height(node->left), height(node->right)) + 1;  
+    r->height = max(height(r->left), height(r->right)) + 1;  
   
-    return y;  
+    return node;  
 }  
   
 int getBalance(Node *N) {  
@@ -169,20 +169,38 @@ void preOrder(Node *root) {
   
 int main() {  
     Node *root = NULL;  
-     
-    root = insert(root, 10);  
-    root = insert(root, 20);  
-    root = insert(root, 30);  
-    root = insert(root, 40);  
-    root = insert(root, 50);  
-    root = insert(root, 25);  
- 
-    cout << "Preorder traversal of the constructed AVL tree is \n";  
-    preOrder(root);  
-    
-    root = deleteNode(root, 10);  
-    cout << "Preorder traversal of the new AVL tree is \n";  
-    preOrder(root);  
+      
+    char c;
+    int val;
 
+    do{
+      cout<<"1. Insert"<<endl;
+      cout<<"2. Delete"<<endl;
+      cout<<"3. Preorder traversal"<<endl;
+      cout<<"n. End?"<<endl;
+
+      cin>>c;
+
+      switch(c){
+        case '1' : cout<<"Val "<<endl;
+                   cin>>val;
+                   root = insert(root, val);
+                   break;
+
+        case '2' : cout<<"Val to delete "<<endl;
+                   cin>>val;
+                   root = deleteNode(root, val);
+                   break;
+
+        case '3' : cout<<"Preorder traversal of the constructed AVL tree is \n";  
+                   preOrder(root);  
+                   cout<<endl;
+                   break;
+
+        default: break;       
+      }
+      
+    } while(c != 'n');
+    
     return 0;  
-}  
+}
